@@ -54,9 +54,10 @@ return [
             'url' => env('APP_URL').'/storage',
             'visibility' => 'public',
         ],
+//
         'mainCategory' => [
             'driver' => 'local',
-            'root' => storage_path('../assest/admin/images/mainCategory'),
+            'root' => storage_path('../assest/images/admin/mainCategory'),
             'url' => env('APP_URL').'/public',
             'visibility' => 'public',
         ],

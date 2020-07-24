@@ -22,7 +22,6 @@ class mainCategoryController extends Controller
 
     public function store(mainCategoryRequest $request){
 
-//        return $request;
         try {
             DB::beginTransaction();
         $category = collect( $request-> category);

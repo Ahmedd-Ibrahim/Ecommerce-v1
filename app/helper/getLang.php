@@ -13,6 +13,6 @@ function default_lang(){
  function uploadImage($folder,$image){
     $image->store('/',$folder);
     $fileName = $image->hashName();
-    $path = 'images/'.$folder . '/' . $fileName;
+    $path = $folder . '/' . $fileName;
     return $path;
  }

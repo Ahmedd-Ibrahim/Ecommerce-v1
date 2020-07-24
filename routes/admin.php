@@ -44,10 +44,22 @@ Route::group(['prefix'=> 'admin','namespace'=>'back', 'middleware' => 'auth:admi
         Route::post('/update/{id}','mainCategoryController@update')->name('admin.categories.update');
         Route::get('/destroy/{id}','mainCategoryController@destroy')->name('admin.categories.destroy');
     });
-    ########################### End Main Categories ################################
+    ########################### End Main Categories ####################################
+
+
+    # #  ######################### Begin Vendor ################################
+    Route::group(['prefix'=>'vendor'],function(){
+        Route::get('/','vendorController@index')->name('admin.vendor');
+        Route::get('/create','vendorController@create')->name('admin.vendor.create');
+        Route::post('/store','vendorController@store')->name('admin.vendor.store');
+        Route::get('/edit/{id}','vendorController@edit')->name('admin.vendor.edit');
+        Route::post('/update/{id}','vendorController@update')->name('admin.vendor.update');
+        Route::get('/destroy/{id}','vendorController@destroy')->name('admin.vendor.destroy');
+    });
+    ########################### End Vendor ################################
 
 });
-########################## admin Route ###################################
+ ########################## admin Route ###################################
 
 // End Auth Admin Routes
 

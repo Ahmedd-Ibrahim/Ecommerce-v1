@@ -35,7 +35,7 @@ class MainCategory extends Model
     }
     public function getPhotoAttribute($val)
     {
-        return ($val !== null) ? asset('assest/admin/'. $val) : '';
+        return ($val !== null) ? asset( 'assest/images/admin/'.$val) : '';
     }
     public function categoey(){
         return $this->hasMany(self::class, 'translation_of');
