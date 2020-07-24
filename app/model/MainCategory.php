@@ -40,4 +40,8 @@ class MainCategory extends Model
     public function categoey(){
         return $this->hasMany(self::class, 'translation_of');
     }
+//   begin relation with vendors
+    public function vendor(){
+        return $this->hasMany('App\model\Vendor','category_id');
+    }
 }

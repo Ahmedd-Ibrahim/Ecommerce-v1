@@ -14,7 +14,7 @@ class Vendor extends Model
      * @var array
      */
     protected $fillable = [
-        'id','name','mobile','email','photo','logo','active','category_id','created_at','updated_at'
+        'id','name','mobile','email','logo','active','category_id','created_at','updated_at'
     ];
 
     /**
@@ -25,8 +25,15 @@ class Vendor extends Model
     protected $hidden = [
         'category_id'
     ];
+    public function scopeSelection($q){
+        return $q->select('name','mobile','email','logo','active','category_id');
+    }
 
     public function scopeActive($q){
         return $q ->where('active',1);
+    }
+    //   begin relation with category
+    public function category(){
+        return $this->belongsTo('App\model\MainCategory','category_id');
     }
 }
