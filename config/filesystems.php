@@ -61,7 +61,7 @@ return [
             'url' => env('APP_URL').'/public',
             'visibility' => 'public',
         ],
-        'vendor' => [
+        'vendors' => [
             'driver' => 'local',
             'root' => storage_path('../assest/images/vendors'),
             'url' => env('APP_URL').'/public',

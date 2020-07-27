@@ -2,6 +2,7 @@
 
 namespace App\model;
 
+use App\Observers\MainCategoryObserver;
 use Illuminate\Database\Eloquent\Model;
 
 class MainCategory extends Model
@@ -26,8 +27,25 @@ class MainCategory extends Model
     protected $hidden = [
 
     ];
+    /**
+     * @var mixed
+     */
+
+
+    protected static function boot()
+    {
+       parent::boot();
+        MainCategory::observe(MainCategoryObserver::class);
+    }
+
+    public function scopeDefault($q){   // get only default rows
+        return $q -> where('translation_lang',default_lang());
+    }
     public function scopeActive($q){  // get only active rows
         return $q -> where('active',1);
+    }
+    public function getActive($q){
+        return $q->select('active');
     }
     public function scopeSelection($q){
 
@@ -37,6 +55,7 @@ class MainCategory extends Model
     {
         return ($val !== null) ? asset( 'assest/images/admin/'.$val) : '';
     }
+#################### begin relations #################
     public function categoey(){
         return $this->hasMany(self::class, 'translation_of');
     }
@@ -44,4 +63,10 @@ class MainCategory extends Model
     public function vendor(){
         return $this->hasMany('App\model\Vendor','category_id');
     }
+
+//    get sub language id
+    public function scopeSubIds(){
+        return $this->categoey()->id;
+    }
+    #################### End relations #################
 }

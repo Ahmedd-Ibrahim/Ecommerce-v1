@@ -40,7 +40,7 @@
             <li class="nav-item"><a href="{{route('admin.categories')}}"><i class="la la-group"></i>
                     <span class="menu-title" data-i18n="nav.dash.main">الاقسام الرئيسية </span>
                     <span
-                        class="badge badge badge-danger badge-pill float-right mr-2">{{App\model\MainCategory::count()}}</span>
+                        class="badge badge badge-danger badge-pill float-right mr-2">{{App\model\MainCategory::default()->count()}}</span>
                 </a>
                 <ul class="menu-content">
                     <li class=""><a class="menu-item" href="{{route('admin.categories')}}"
@@ -53,7 +53,7 @@
             </li>
 
             <li class="nav-item"><a href="{{route('admin.vendor')}}"><i class="la la-male"></i>
-                    <span class="menu-title" data-i18n="nav.dash.main">المدربين  </span>
+                    <span class="menu-title" data-i18n="nav.dash.main">التجار</span>
                     <span
                         class="badge badge badge-success badge-pill float-right mr-2">{{App\model\Vendor::count()}}</span>
                 </a>
@@ -62,7 +62,7 @@
                                           data-i18n="nav.dash.ecommerce"> عرض الكل </a>
                     </li>
                     <li><a class="menu-item" href="{{route('admin.vendor.create')}}" data-i18n="nav.dash.crypto">أضافة
-                            مدرب </a>
+                            تاجر </a>
                     </li>
                 </ul>
             </li>

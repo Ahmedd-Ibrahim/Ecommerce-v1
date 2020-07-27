@@ -7,6 +7,7 @@ use App\Http\Requests\mainCategoryRequest;
 use App\model\MainCategory;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Str;
 
 class mainCategoryController extends Controller
 {
@@ -14,6 +15,7 @@ class mainCategoryController extends Controller
 
         $default_lang = default_lang();
         $categories = MainCategory::where('translation_lang',$default_lang)->selection()->get();
+
         return view('back.mainCategory.index',compact('categories'));
     }
     public function create(){
@@ -114,6 +116,60 @@ class mainCategoryController extends Controller
         return redirect()->route('admin.categories')->with(['success'=> 'تم تعديل القسم بنجاح']);
         }catch (\Exception $ex){
             redirect()->route('admin.categories')->with(['error'=>'هناك خطأ ما حاول مرة أخري']);
+        }
+    }
+    public function destroy($id){
+        try {
+            $category = MainCategory::find($id);
+            $vendors = $category->vendor();
+            if(isset($vendors) && $vendors->count() > 0){
+                return redirect()->route('admin.categories')->with(['error'=>'لا يمكن حذف هذا القسم']);
+            }else{
+
+                ######## Begin prepare category group id #########
+                $id_arr = [];
+                if (isset($category->categoey) && $category->categoey->count() > 0){
+                    foreach ($category->categoey as $ids){
+                        $id_arr[] = $ids->id; // Id for sub languages
+                    }
+                }
+
+                $id_arr [] = $category->id; // id for default language
+                $category->destroy($id_arr); // delete all
+                ######## prepare category group id #########
+
+                ################ Begin delete this category image from project files ##########
+                $local_path = str::before( app_path(),'app');
+                $img_path = Str::after($category->photo,'assest/');
+                $image = $local_path."assest/".$img_path;
+                unlink($image); // delete the Image
+                ################ End delete this category image from project files ##########
+                return redirect()->route('admin.categories')->with(['success'=> 'تم حذف القسم بنجاح']);
+            }
+
+        }catch (\Exception $ex){
+
+            redirect()->route('admin.categories')->with(['error'=>'هناك خطأ ما حاول مرة أخري']);
+        }
+
+    }
+    public function activation($id)
+    {
+        try {
+            $category = MainCategory::find($id);
+            if(!$category){
+                return redirect()->route('admin.categories')->with(['error'=>'هذا القسم غير موجود']);
+            }
+            if($category->active == 0){
+                $category->update(['active'=> 1]);
+                return redirect()->route('admin.categories')->with(['success'=> 'تم تفعيل القسم بنجاح']);
+            }elseif ($category->active == 1){
+
+                $category->update(['active'=> 0]);
+                return redirect()->route('admin.categories')->with(['success'=> 'تم إلغاء التفعيل بنجاح']);
+            }
+        }catch (\Exception $ex){
+          return  redirect()->route('admin.categories')->with(['error'=>'هناك خطأ ما حاول مرة أخري']);
         }
     }
 }

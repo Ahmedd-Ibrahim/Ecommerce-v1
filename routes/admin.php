@@ -43,6 +43,7 @@ Route::group(['prefix'=> 'admin','namespace'=>'back', 'middleware' => 'auth:admi
         Route::get('/edit/{id}','mainCategoryController@edit')->name('admin.categories.edit');
         Route::post('/update/{id}','mainCategoryController@update')->name('admin.categories.update');
         Route::get('/destroy/{id}','mainCategoryController@destroy')->name('admin.categories.destroy');
+        Route::get('/activation/{id}','mainCategoryController@activation')->name('admin.categories.activation');
     });
     ########################### End Main Categories ####################################
 
@@ -55,6 +56,7 @@ Route::group(['prefix'=> 'admin','namespace'=>'back', 'middleware' => 'auth:admi
         Route::get('/edit/{id}','vendorController@edit')->name('admin.vendor.edit');
         Route::post('/update/{id}','vendorController@update')->name('admin.vendor.update');
         Route::get('/destroy/{id}','vendorController@destroy')->name('admin.vendor.destroy');
+        Route::get('/activation/{id}','vendorController@activation')->name('admin.vendor.activation');
     });
     ########################### End Vendor ################################
 

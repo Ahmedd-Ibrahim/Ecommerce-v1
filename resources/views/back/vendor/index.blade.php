@@ -24,7 +24,7 @@
                         <div class="col-12">
                             <div class="card">
                                 <div class="card-header">
-                                    <h4 class="card-title">جميع لغات الموقع </h4>
+                                    <h3 class="card-title">جميع التجار النشطة </h3>
                                     <a class="heading-elements-toggle"><i
                                             class="la la-ellipsis-v font-medium-3"></i></a>
                                     <div class="heading-elements">
@@ -59,7 +59,7 @@
                                                     @foreach($vendors as $vendor)
                                             <tr>
                                                 <td>{{$vendor->name}}</td>
-                                                <td><img style="width: 100px; height: 100px" src="{{$vendor->logo}}"></td>
+                                                <td><img style="width: 100px; height: 100px" src="{{($vendor->logo)}}"></td>
                                                 <td>{{$vendor->category->name}}</td>
                                                 @if($vendor->active === 1 ? $active = 'مفعل' : $active = 'غيرمفعل')
                                                     <td>{{$active}}</td>
@@ -68,10 +68,19 @@
                                                 <td>
                                                     <div class="btn-group" role="group"
                                                          aria-label="Basic example">
-                                                        <a href="#"
+                                                        <a href="{{route('admin.vendor.edit',$vendor->id)}}"
                                                            class="btn btn-outline-primary btn-min-width box-shadow-3 mr-1 mb-1">تعديل</a>
-                                                        <a href="#"
+                                                        <a href="{{route('admin.vendor.destroy',$vendor->id)}}"
                                                            class="btn btn-outline-danger btn-min-width box-shadow-3 mr-1 mb-1">حذف</a>
+                                                        <a href="{{route('admin.vendor.activation',$vendor->id)}}"
+                                                           class="btn btn-outline-danger btn-min-width box-shadow-3 mr-1 mb-1">
+                                                            @if($vendor->active == 1)
+                                                                إلغاء التفعيل
+
+                                                            @else
+                                                                تفعيل
+                                                            @endif
+                                                        </a>
                                                     </div>
                                                 </td>
                                             </tr>
