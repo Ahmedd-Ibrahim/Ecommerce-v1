@@ -47,6 +47,8 @@
                                               method="POST"
                                               enctype="multipart/form-data">
                                             @csrf
+                                            <input type="hidden"  value="" id="latitude" name="latitude">
+                                            <input type="hidden" value="" id="longitude"  name="longitude">
                                             <div class="form-group">
                                                 <label> صوره اللوجو </label>
                                                 <label id="projectinput7" class="file center-block">

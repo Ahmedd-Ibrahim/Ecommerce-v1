@@ -23,3 +23,7 @@ Auth::routes();
 Route::get('/', 'front\siteController@index')->name('home');
 //Route::get('/index', 'indexController@index')->name('index');
 
+
+Route::get('/product', function (){
+   return view('front.products.product');
+});

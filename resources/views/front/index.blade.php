@@ -72,13 +72,7 @@
                                                             height="600"
                                                         >
                                                     </a>
-
-
                                                     <div class="product-flags discount">Sale</div>
-
-
-
-
                                                 </div>
                                                 <div class="product-description">
                                                     <div class="product-groups">
@@ -6871,7 +6865,4 @@ marketplace/views/templates/hook/product-list.tpl -->
             </div>
         </div>
     </section>
-
-
-
 @endsection

@@ -41,7 +41,7 @@
             "database/seeds",
             "database/factories"
         ],"files": [
-            "App/helper/getLang.php"
+            "app/helper/getLang.php"
         ]
     },
     "autoload-dev": {

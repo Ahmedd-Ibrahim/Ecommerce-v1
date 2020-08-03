@@ -68,8 +68,6 @@ class mainCategoryController extends Controller
             DB::rollback();
             redirect()->route('admin.categories')->with(['error'=>'هناك خطأ ما حاول مرة أخري']);
         }
-
-
     }
 
     public function edit($id){
@@ -83,7 +81,6 @@ class mainCategoryController extends Controller
     }
     public function update($id, mainCategoryRequest $request){
 
-//        return $request;
         try {
 
         $main_category = MainCategory::find($id);
@@ -110,7 +107,6 @@ class mainCategoryController extends Controller
                 MainCategory::where('id',$id)
                     ->update([
                        'photo' => $path
-
                     ]);
             }
         return redirect()->route('admin.categories')->with(['success'=> 'تم تعديل القسم بنجاح']);

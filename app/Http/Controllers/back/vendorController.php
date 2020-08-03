@@ -44,6 +44,8 @@ class vendorController extends Controller
                 "password" => bcrypt($request->password),
                 "active" => $active,
                 "logo" => $filePath,
+              "latitude" => $request->latitude,
+              "longitude" => $request->longitude,
 
             ]);
             Notification::send($vendor,new vendorCreated($vendor));

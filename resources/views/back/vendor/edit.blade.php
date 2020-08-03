@@ -47,6 +47,10 @@
                                               method="POST"
                                               enctype="multipart/form-data">
                                             @csrf
+
+                                            <input type="hidden"  value="{{$vendor -> latitude}}" id="latitude" name="latitude">
+                                            <input type="hidden" value="{{$vendor -> longitude}}" id="longitude"  name="longitude">
+
                                             <input type="hidden" name="id" value="{{$vendor->id}}">
                                             <div class="form-group">
                                                 <label> صوره اللوجو </label>

@@ -48,7 +48,19 @@ Route::group(['prefix'=> 'admin','namespace'=>'back', 'middleware' => 'auth:admi
     ########################### End Main Categories ####################################
 
 
-    # #  ######################### Begin Vendor ################################
+    ########################## Begin sub Categories ################################
+    Route::group(['prefix'=>'categories/sub'],function(){
+        Route::get('/','subCategoryController@index')->name('admin.subCategories');
+        Route::get('/create','subCategoryController@create')->name('admin.subCategories.create');
+        Route::post('/store','subCategoryController@store')->name('admin.subCategories.store');
+        Route::get('/edit/{id}','subCategoryController@edit')->name('admin.subCategories.edit');
+        Route::post('/update/{id}','subCategoryController@update')->name('admin.subCategories.update');
+        Route::get('/destroy/{id}','subCategoryController@destroy')->name('admin.subCategories.destroy');
+        Route::get('/activation/{id}','subCategoryController@activation')->name('admin.subCategories.activation');
+    });
+    ########################### End sub Categories ####################################
+
+    ########################### Begin Vendor ################################
     Route::group(['prefix'=>'vendor'],function(){
         Route::get('/','vendorController@index')->name('admin.vendor');
         Route::get('/create','vendorController@create')->name('admin.vendor.create');
@@ -59,6 +71,17 @@ Route::group(['prefix'=> 'admin','namespace'=>'back', 'middleware' => 'auth:admi
         Route::get('/activation/{id}','vendorController@activation')->name('admin.vendor.activation');
     });
     ########################### End Vendor ################################
+    ########################### Begin product ################################
+    Route::group(['prefix'=>'product'],function(){
+        Route::get('/','productController@index')->name('admin.product');
+        Route::get('/create','productController@create')->name('admin.product.create');
+        Route::post('/store','productController@store')->name('admin.product.store');
+        Route::get('/edit/{id}','productController@edit')->name('admin.product.edit');
+        Route::post('/update/{id}','productController@update')->name('admin.product.update');
+        Route::get('/destroy/{id}','productController@destroy')->name('admin.product.destroy');
+        Route::get('/activation/{id}','productController@activation')->name('admin.product.activation');
+    });
+  ########################### End product ################################
 
 });
  ########################## admin Route ###################################

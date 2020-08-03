@@ -2,7 +2,7 @@
 
 namespace App\Http\Requests;
 
-use http\Env\Request;
+
 use Illuminate\Foundation\Http\FormRequest;
 
 class vendorsRequest extends FormRequest
@@ -36,9 +36,10 @@ class vendorsRequest extends FormRequest
         return [
             "name"=> "required",
             "category_id"=> "required|int",
-            "mobile"=> "required|unique:vendors,mobile,".$this->id,
+            'mobile' =>'required|max:100|unique:vendors,mobile,'.$this -> id,
+            'email'  => 'required|email|unique:vendors,email,'.$this -> id,
             "address"=> "required|string|max:100",
-            "email"=> "required_without:id|email|unique:vendors,email,".$this->id,
+
             "logo" => "mimes:jpg,png,jpeg",
             "password" => "required_without:id",
 

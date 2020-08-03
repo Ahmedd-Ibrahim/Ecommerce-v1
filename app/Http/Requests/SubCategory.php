@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class mainCategoryRequest extends FormRequest
+class SubCategory extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -24,16 +24,15 @@ class mainCategoryRequest extends FormRequest
     public function rules()
     {
         return [
-            'photo' => 'required_without:id|mimes:jpg,png,jpeg',
+           'photo' => 'required_without:id|mimes:jpg,png,jpeg',
             'category'=> 'required|array|min:1',
-            'category.*.name' =>'required',
+            'category.*.name' =>'required|string|max:100',
 //            'category.*.active' =>'required',
             'category.*.abbr' =>'required',
-            // 'name' => 'required|string|max:100',
-            // 'abbr' => 'required|string|max:10'
+
+
         ];
     }
-
     public function messages()
     {
         return [
@@ -41,7 +40,8 @@ class mainCategoryRequest extends FormRequest
             'string' => 'أسم القسم لابد أن يكون احرف',
             'name.max' => 'أسم القسم لابد الا يزيد عن 100 حرف',
             'abbr.max' => 'أسم اللغة لابد الا يزيد عن 10 حرف',
-            'photo.mimes'=>    'فقط يسمح بالامتدادات التالية:jpg , png, jpeg'
+            'photo.mimes'=>    'فقط يسمح بالامتدادات التالية:jpg , png, jpeg',
+            'parent.integer' => 'من فضلك أختار القسم الرئيسي ',
         ];
     }
 }
