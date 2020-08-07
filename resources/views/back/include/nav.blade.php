@@ -9,7 +9,7 @@
                         class="nav-link nav-menu-main menu-toggle hidden-xs" href="#"><i
                             class="ft-menu font-large-1"></i></a></li>
                 <li class="nav-item">
-                    <a class="navbar-brand" href="index.html">
+                    <a class="navbar-brand" href="{{route('admin.index')}}">
                         <img class="brand-logo" alt="modern admin logo"
                              src="{{asset('assest/admin/images/logo/logo.png')}}">
                         <h3 class="brand-text">Modern Admin</h3>

@@ -60,7 +60,6 @@
                                             <h4 class="form-section"><i class="ft-home"></i> بيانات القسم </h4>
                                             <div class="form-body">
                                                 <div class="row">
-
                                                 <div class="col-md-6">
                                                     <div class="form-group">
                                                         <label for="projectinput1">  القسم الرئيسي </label>
@@ -74,9 +73,9 @@
                                                               @endif
                                                               @endisset
                                                             </select>
-                                                        @error("parent")
-                                                        <span class="text-danger"> هذا الحقل مطلوب</span>
-                                                        @enderror
+                                                            @error('parent')
+                                                            <span class="text-danger">{{$message}}</span>
+                                                            @enderror
                                                     </div>
                                                 </div>
                                                 @if(getLang() -> count() > 0)

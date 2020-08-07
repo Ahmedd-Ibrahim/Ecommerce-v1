@@ -49,7 +49,7 @@ class MainCategory extends Model
     }
     public function scopeSelection($q){
 
-        return $q->select('id','translation_lang','name','slug','photo','active','translation_of');
+        return $q->select('id','translation_lang','name','slug','photo','active','translation_of','created_at');
     }
     public function getPhotoAttribute($val)
     {

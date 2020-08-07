@@ -1,10 +1,9 @@
-
 <!-- Begin SideBar-->
 <div class="main-menu menu-fixed menu-light menu-accordion    menu-shadow " data-scroll-to-active="true">
     <div class="main-menu-content">
         <ul class="navigation navigation-main" id="main-menu-navigation" data-menu="menu-navigation">
 
-            <li class="nav-item "><a href=""><i class="la la-mouse-pointer"></i><span
+        <li class="nav-item "><a href="{{route('admin.index')}}"><i class="la la-mouse-pointer"></i><span
                         class="menu-title" data-i18n="nav.add_on_drag_drop.main">الرئيسية </span></a>
             </li>
 
@@ -65,7 +64,6 @@
                     </li>
                 </ul>
             </li>
-
             <li class="nav-item"><a href="{{route('admin.vendor')}}"><i class="la la-male"></i>
                     <span class="menu-title" data-i18n="nav.dash.main">التجار</span>
                     <span
@@ -80,12 +78,10 @@
                     </li>
                 </ul>
             </li>
-
-
         <li class="nav-item"><a href="{{route('admin.product')}}"><i class="la la-male"></i>
                     <span class="menu-title" data-i18n="nav.dash.main">المنتجات</span>
                     <span
-        class="badge badge badge-warning  badge-pill float-right mr-2">0</span>
+        class="badge badge badge-warning  badge-pill float-right mr-2">{{App\model\product::langDef()->count()}}</span>
                 </a>
                 <ul class="menu-content">
                 <li class=""><a class="menu-item" href="{{route('admin.product')}}"
@@ -96,8 +92,6 @@
                     </li>
                 </ul>
             </li>
-
-
             <li class="nav-item">
                 <a href=""><i class="la la-male"></i>
                     <span class="menu-title" data-i18n="nav.dash.main">تذاكر المراسلات   </span>
@@ -110,8 +104,6 @@
                     </li>
                 </ul>
             </li>
-
-
             <li class=" nav-item"><a href="#"><i class="la la-television"></i><span class="menu-title"
                                                                                     data-i18n="nav.templates.main">Templates</span></a>
                 <ul class="menu-content">

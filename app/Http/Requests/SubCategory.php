@@ -27,8 +27,9 @@ class SubCategory extends FormRequest
            'photo' => 'required_without:id|mimes:jpg,png,jpeg',
             'category'=> 'required|array|min:1',
             'category.*.name' =>'required|string|max:100',
-//            'category.*.active' =>'required',
+
             'category.*.abbr' =>'required',
+            'parent' =>'required|integer',
 
 
         ];

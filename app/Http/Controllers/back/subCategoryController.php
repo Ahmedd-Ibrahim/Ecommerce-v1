@@ -28,6 +28,7 @@ class subCategoryController extends Controller
 
     public function store(RequestSubCategory $request)
     {
+
         try {
             DB::beginTransaction();
             /* push the request to collect & get default category  */
@@ -172,5 +173,5 @@ class subCategoryController extends Controller
 
     }
 
-    
+
 }

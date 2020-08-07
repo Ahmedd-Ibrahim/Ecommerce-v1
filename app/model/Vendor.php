@@ -42,5 +42,8 @@ class Vendor extends Model
     public function category(){
         return $this->belongsTo('App\model\MainCategory','category_id');
     }
+    public function products(){
+        return $this->hasMany('App\model\product','vendor_id');
+    }
 
 }

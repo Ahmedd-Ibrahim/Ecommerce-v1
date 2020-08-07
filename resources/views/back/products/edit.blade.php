@@ -11,9 +11,9 @@
                             <ol class="breadcrumb">
                                 <li class="breadcrumb-item"><a href="">الرئيسية </a>
                                 </li>
-                                <li class="breadcrumb-item"><a href=""> الاقسام الرئيسية </a>
+                                <li class="breadcrumb-item"><a href=""> المنتجات</a>
                                 </li>
-                                <li class="breadcrumb-item active">إضافة قسم رئيسي
+                                <li class="breadcrumb-item active">تعديل المنتج
                                 </li>
                             </ol>
                         </div>
@@ -27,7 +27,7 @@
                         <div class="col-md-12">
                             <div class="card">
                                 <div class="card-header">
-                                    <h4 class="card-title" id="basic-layout-form"> تعديل قسم رئيسي </h4>
+                                    <h4 class="card-title" id="basic-layout-form">تعديل المنتج </h4>
                                     <a class="heading-elements-toggle"><i
                                             class="la la-ellipsis-v font-medium-3"></i></a>
                                     <div class="heading-elements">
@@ -43,14 +43,14 @@
                                 @include('back.include.alerts.errors')
                                 <div class="card-content collapse show">
                                     <div class="card-body">
-                                        <form class="form" action="{{route('admin.subCategories.update',$SubCategory->id)}}"
+                                        <form class="form" action="{{route('admin.product.update',$product->id)}}"
                                               method="POST"
                                               enctype="multipart/form-data">
                                             @csrf
-                                            <input type="hidden" name="id" value="{{$SubCategory->id}}">
-                                            <input type="hidden" name="cat_id" value="{{$SubCategory->id}}">
+                                            <input type="hidden" name="id" value="{{$product->id}}">
+                                            <input type="hidden" name="cat_id" value="{{$product->id}}">
                                             <div class="form-group text-center">
-                                                <img src="{{$SubCategory->photo}}" style="height:400px; width: 500px">
+                                                <img src="{{$product->photo}}" style="height:400px; width: 500px">
                                             </div>
                                             <div class="form-group">
                                                 <label> تحديث صورة القسم </label>
@@ -64,13 +64,12 @@
                                             </div>
 
                                             <div class="form-body">
-
-                                                <h4 class="form-section"><i class="ft-home"></i> بيانات القسم </h4>
+                                                <h4 class="form-section"><i class="ft-home"></i> بيانات المنتج </h4>
                                                         <div class="row">
                                                             <div class="col-md-12">
                                                                 <div class="form-group">
-                                                                    <label for="projectinput1"> اسم القسم - {{__('messages.'.$SubCategory-> translation_lang)}} </label>
-                                                                    <input type="text" value="{{$SubCategory->name}}" id="name"
+                                                                    <label for="projectinput1"> اسم المنتج - {{__('messages.'.$product-> translation_lang)}} </label>
+                                                                    <input type="text" value="{{$product->name}}" id="name"
                                                                            class="form-control"
                                                                            placeholder="  "
                                                                            name="name">
@@ -81,11 +80,11 @@
                                                             </div>
                                                             <div class="col-md-6 hidden">
                                                                 <div class="form-group">
-                                                                    <label for="projectinput1"> أختصار اللغة {{__('messages.'.$SubCategory-> translation_lang)}} </label>
+                                                                    <label for="projectinput1"> أختصار اللغة {{__('messages.'.$product-> translation_lang)}} </label>
                                                                     <input type="text" id="abbr"
                                                                            class="form-control"
                                                                            placeholder="  "
-                                                                           value="{{$SubCategory-> translation_lang}}"
+                                                                           value="{{$product-> translation_lang}}"
                                                                            name="abbr">
 
                                                                     @error("abbr")
@@ -102,12 +101,12 @@
                                                                            name="active"
                                                                            id="switcheryColor4"
                                                                            class="switchery" data-color="success"
-                                                                           @if($SubCategory->active == 1) checked @endif
+                                                                           @if($product->active == 1) checked @endif
                                                                            />
                                                                     <label for="switcheryColor4"
-                                                                           class="card-title ml-1">الحالة  {{__('messages.'.$SubCategory-> translation_lang)}} </label>
+                                                                           class="card-title ml-1">الحالة </label>
 
-                                                                    @error("category.0.active")
+                                                                    @error("active")
                                                                     <span class="text-danger"> </span>
                                                                     @enderror
                                                                 </div>
@@ -115,21 +114,11 @@
                                                         </div>
                                             </div>
 
-                                            {{-- <div class="form-actions">
-                                                <button type="button" class="btn btn-warning mr-1"
-                                                        onclick="history.back();">
-                                                    <i class="ft-x"></i> تراجع
-                                                </button>
-                                                <button type="submit" class="btn btn-primary">
-                                                    <i class="la la-check-square-o"></i> حفظ
-                                                </button>
-                                            </div> --}}
-                                        {{-- </form> --}}
-                                    <h3 class="text-center"> <i class="ft-home"></i>تعديل بيانات القسم فى اللغات الاخري</h3>
+                                    <h3 class="text-center"> <i class="ft-home"></i> تعديل بيانات المنتج  فى اللغات الاخري </h3>
 
                                         <ul class="nav nav-tabs nav-top-border no-hover-bg nav-justified" id="tab-top-line-drag">
-                                            @isset($SubCategory->mainLang)
-                                                @foreach($SubCategory->mainLang as $index => $trans)
+                                            @isset($product->languages)
+                                                @foreach($product->languages as $index => $trans)
                                             <li class="nav-item">
                                                 <a class="nav-link @if($index == 0) active @endif" id="activeIcon1-tab1" data-toggle="tab" href="#activeIcon1{{$index}}"
                                                    aria-controls="activeIcon1" aria-expanded="true"><i class="la la-check"></i> {{$trans->translation_lang}}</a>
@@ -138,22 +127,17 @@
                                             @endisset
                                         </ul>
                                         <div class="tab-content px-1 pt-1">
-                                        @isset($SubCategory->mainLang)
-                                            @foreach($SubCategory->mainLang as $index => $trans)
+                                        @isset($product->languages)
+                                            @foreach($product->languages as $index => $trans)
 
                                             <div role="tabpanel" class="tab-pane @if($index == 0) active @endif" id="activeIcon1{{$index}}" aria-labelledby="activeIcon1-tab1"
                                                  aria-expanded="false">
-                                                {{-- <form class="form" action="{{route('admin.subCategories.update',$trans->id)}}"
-                                                      method="POST"
-                                                      enctype="multipart/form-data">
-                                                    @csrf
-                                                    <input type="hidden" name="id" value="{{$trans->id}}"> --}}
                                                     <div class="form-body">
-                                                        <h4 class="form-section"><i class="ft-home"></i> بيانات القسم </h4>
+                                                        <h4 class="form-section"><i class="ft-home"></i> بيانات المنتج </h4>
                                                         <div class="row">
                                                             <div class="col-md-12">
                                                                 <div class="form-group">
-                                                                    <label for="projectinput1"> اسم القسم - {{__('messages.'.$trans -> translation_lang)}} </label>
+                                                                    <label for="projectinput1"> اسم المنتج - {{__('messages.'.$trans -> translation_lang)}} </label>
                                                                     <input type="text" value="{{$trans->name}}" id="name"
                                                                            class="form-control"
                                                                            placeholder=""
@@ -180,27 +164,11 @@
                                                                     @enderror
                                                                 </div>
                                                             </div>
-
-                                                        </div>
-                                                        <div class="row">
-                                                            <div class="col-md-6">
-                                                                <div class="form-group mt-1">
-                                                                    <input type="checkbox" value="1"
-                                                                           name="mainLang[{{$index}}][active]"
-                                                                           id="switcheryColor4"
-                                                                           class="switchery" data-color="success"
-                                                                           @if($trans->active == 1) checked @endif
-                                                                    />
-                                                                    <label for="switcheryColor4"
-                                                                           class="card-title ml-1">الحالة  {{__('messages.'.$trans -> translation_lang)}} </label>
-
-                                                                    @error("mainLang.$index.active")
-                                                                    <span class="text-danger"> </span>
-                                                                    @enderror
-                                                                </div>
-                                                            </div>
                                                         </div>
                                                     </div>
+                                                </div>
+                                                @endforeach
+                                                @endisset
                                                     <div class="form-actions">
                                                         <button type="button" class="btn btn-warning mr-1"
                                                                 onclick="history.back();">
@@ -210,12 +178,11 @@
                                                             <i class="la la-check-square-o"></i> حفظ
                                                         </button>
                                                     </div>
-                                                </form>
-                                            </form>
-                                            </div>
 
-                                            @endforeach
-                                        @endisset
+                                            </form>
+
+
+
                                         </div>
                                     </div>
                                 </div>

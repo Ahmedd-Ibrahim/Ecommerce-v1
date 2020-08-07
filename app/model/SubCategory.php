@@ -49,6 +49,10 @@ class SubCategory extends Model
         return $this->belongsTo(MainCategory::class,'category_id');
     }
 
+    public function products(){
+        return $this->hasMany('App\model\product','category_id');
+    }
+
     ########### End Relations ############
 
 }

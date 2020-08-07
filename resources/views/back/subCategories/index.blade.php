@@ -15,6 +15,7 @@
                             </ol>
                         </div>
                     </div>
+                    <a class="btn btn-info" href="{{route('admin.subCategories.create')}}">     أضافة قسم </a>
                 </div>
             </div>
             <div class="content-body">

@@ -4,6 +4,7 @@ namespace App\model;
 
 use Illuminate\Database\Eloquent\Model;
 
+
 class Product extends Model
 {
     protected $table = 'products';
@@ -14,7 +15,7 @@ class Product extends Model
      * @var array
      */
     protected $fillable = [
-        'id','name','count','photo','active','vendor_id','category_id','created_at','updated_at'
+        'id','name','count','photo','active','vendor_id','category_id','translation_of','translation_lang','created_at','updated_at'
     ];
 
     /**
@@ -23,10 +24,29 @@ class Product extends Model
      * @var array
      */
     protected $hidden = [
-        'category_id','password'
+
     ];
 
     public function getPhotoAttribute($val){
         return ($val !== null) ? asset( 'assest/images/'.$val) : '';
     }
+    public function getActive(){
+        return   $this -> active == 1 ? 'مفعل'  : 'غير مفعل';
+    }
+    public function scopeLangDef($q){
+        return $q->where('translation_lang',default_lang());
+    }
+
+    /* Begin Relations */
+    public function vendor(){
+        return $this->belongsTo('App\model\Vendor','vendor_id');
+    }
+    public function category(){
+        return $this->belongsTo('App\model\SubCategory','category_id');
+    }
+
+    public function languages(){
+        return $this->hasMany(self::class,'translation_of');
+    }
+    /* End Relations */
 }

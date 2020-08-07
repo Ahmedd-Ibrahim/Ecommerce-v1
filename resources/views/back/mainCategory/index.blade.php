@@ -4,17 +4,19 @@
         <div class="content-wrapper">
             <div class="content-header row">
                 <div class="content-header-left col-md-6 col-12 mb-2">
-                    <h3 class="content-header-title"> اللغات </h3>
+                    <h3 class="content-header-title"> الاقسام الرئيسية </h3>
                     <div class="row breadcrumbs-top">
                         <div class="breadcrumb-wrapper col-12">
                             <ol class="breadcrumb">
                                 <li class="breadcrumb-item"><a href="">الرئيسية</a>
                                 </li>
-                                <li class="breadcrumb-item active"> اللغات
+                                <li class="breadcrumb-item active"> الاقسام
                                 </li>
+
                             </ol>
                         </div>
                     </div>
+                    <a class="btn btn-info" href="{{route('admin.categories.create')}}">     أضافة قسم </a>
                 </div>
             </div>
             <div class="content-body">
@@ -50,6 +52,7 @@
                                                 <th>اللغة</th>
                                                 <th>الصورة</th>
                                                 <th>الحالة</th>
+                                                <th>التاريخ</th>
                                                 <th>الإجراءات</th>
                                             </tr>
                                             </thead>
@@ -61,10 +64,10 @@
                                                 <td>{{$category->name}}</td>
                                                 <td>{{$category->translation_lang}}</td>
                                                 <td><img style="width: 100px; height: 100px" src="{{$category->photo}}"></td>
-                                                @if($category->active === 1 ? $active = 'مفعل' : $active = 'غيرمفعل')
+                                                @if($category->active === 1 ? $active = 'مفعل' : $active = 'غير مفعل')
                                                     <td>{{$active}}</td>
                                                 @endif
-
+                                            <td>{{$category->created_at}}</td>
                                                 <td>
                                                     <div class="btn-group" role="group"
                                                          aria-label="Basic example">
@@ -76,7 +79,6 @@
                                                            class="btn btn-outline-danger btn-min-width box-shadow-3 mr-1 mb-1">
                                                            @if($category->active == 1)
                                                                إلغاء التفعيل
-
                                                                @else
                                                                    تفعيل
                                                                    @endif

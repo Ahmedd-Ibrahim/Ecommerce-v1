@@ -77,8 +77,6 @@
                                                                     @enderror
                                                                 </div>
                                                             </div>
-
-
                                                             <div class="col-md-6 hidden">
                                                                 <div class="form-group">
                                                                     <label for="projectinput1"> أختصار اللغة {{__('messages.'.$lang -> abbr)}} </label>
@@ -95,25 +93,26 @@
                                                             </div>
 
                                                         </div>
-                                                        <div class="row">
-                                                            <div class="col-md-6">
-                                                                <div class="form-group mt-1">
-                                                                    <input type="checkbox" value="1"
-                                                                           name="category[{{$index}}][active]"
-                                                                           id="switcheryColor4"
-                                                                           class="switchery" data-color="success"
-                                                                           checked/>
-                                                                    <label for="switcheryColor4"
-                                                                           class="card-title ml-1">الحالة  {{__('messages.'.$lang -> abbr)}} </label>
 
-                                                                    @error("category.$index.active")
-                                                                    <span class="text-danger"> </span>
-                                                                    @enderror
-                                                                </div>
-                                                            </div>
-                                                        </div>
                                                     @endforeach
                                                 @endif
+                                                <div class="row">
+                                                    <div class="col-md-6">
+                                                        <div class="form-group mt-1">
+                                                            <input type="checkbox" value="1"
+                                                                   name="active"
+                                                                   id="switcheryColor4"
+                                                                   class="switchery" data-color="success"
+                                                                   checked/>
+                                                            <label for="switcheryColor4"
+                                                                   class="card-title ml-1">الحالة </label>
+
+                                                            @error("active")
+                                                            <span class="text-danger"> </span>
+                                                            @enderror
+                                                        </div>
+                                                    </div>
+                                                </div>
                                             </div>
 
 

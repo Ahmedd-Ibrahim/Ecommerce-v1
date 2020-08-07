@@ -36,18 +36,21 @@
                                     </ul>
                                   </div>
                                 </div>
+
+                                @include('back.include.alerts.success')
+                                @include('back.include.alerts.errors')
                                 <div class="card-content collapse show">
                                   <div class="card-body card-dashboard">
                                     <p class="card-text">هنا يتم عرض جميع منتجات الموقع</p>
-                                    <table class="table table-striped table-bordered dom-jQuery-events">
+                                    <table class="table table-striped table-bordered dom-jQuery-events text-center">
                                       <thead>
                                         <tr>
                                           <th>اسم المنتج</th>
                                           <th>اسم التاجر</th>
                                           <th>القسم</th>
-                                          <th>التاريخ</th>
+                                          <th>التفعيل</th>
                                           <th>صورة المنتج</th>
-                                          <th>صفحة المنتج</th>
+                                          <th>التاريخ</th>
                                           <th>الاجراءات</th>
                                         </tr>
                                       </thead>
@@ -56,26 +59,52 @@
                                           @foreach ($products as $product)
                                           <tr>
                                           <td>{{$product->name}}</td>
-                                            <td>System Architect</td>
-                                            <td>System Architect</td>
-                                            <td>{{$product->created_at}}</td>
+                                          @isset($product->vendor)
+
+                                          <td>{{$product->vendor->name}}</td>
+                                          @endisset
+                                          @if(!$product->vendor)
+                                          <td>unknown</td>
+                                          @endif
+                                            @if (isset($product->category))
+                                          <td>{{$product->category->name}}</td>
+                                            @endif
+                                            @if($product->active === 1 ? $active = 'مفعل' : $active = 'غيرمفعل')
+                                            <td>{{$active}}</td>
+                                        @endif
+
                                           <td><img style="width: 50px;height:50px" src="{{$product->photo}}" alt=""></td>
-                                            <td>2011/04/25</td>
-                                            <td>$320,800</td>
+                                          <td>{{$product->created_at}}</td>
+                                          <td>
+                                            <div class="btn-group" role="group"
+                                                 aria-label="Basic example">
+                                                <a href="{{route('admin.product.edit',$product->id)}}"
+                                                   class="btn btn-outline-primary btn-min-width box-shadow-3 mr-1 mb-1">تعديل</a>
+                                                <a href="{{route('admin.product.destroy',$product->id)}}"
+                                                   class="btn btn-outline-danger btn-min-width box-shadow-3 mr-1 mb-1">حذف</a>
+                                                <a href="{{route('admin.product.activation',$product->id)}}"
+                                                   class="btn btn-outline-danger btn-min-width box-shadow-3 mr-1 mb-1">
+                                                   @if($product->active == 1)
+                                                       إلغاء التفعيل
+
+                                                       @else
+                                                           تفعيل
+                                                           @endif
+                                                </a>
+                                            </div>
+                                        </td>
                                           </tr>
                                           @endforeach
                                           @endif
-
-
                                       </tbody>
                                       <tfoot>
                                         <tr>
                                             <th>اسم المنتج</th>
                                             <th>اسم التاجر</th>
                                             <th>القسم</th>
-                                            <th>التاريخ</th>
+                                            <th>التفعيل</th>
                                             <th>صورة المنتج</th>
-                                            <th>صفحة المنتج</th>
+
                                             <th>الاجراءات</th>
                                         </tr>
                                       </tfoot>
